@@ -4,6 +4,7 @@ import cv2
 import os
 import imutils
 import imageio
+import time
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video", required=True, help="path to input video")
@@ -86,7 +87,7 @@ while True:
 
             color = COLORS[classIDs[i]]
             cv2.rectangle(frame, (x, y), (x+w, y+h), color, 2)
-            disply_txt = '{:0.2f}% {}'.format(confidences[i], CLASSES[classIDs[i]])
+            disply_txt = '{:0.2f}% {}'.format(confidences[i] * 100, CLASSES[classIDs[i]])
             cv2.putText(frame, disply_txt, (x, y-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
     if writer is None:
